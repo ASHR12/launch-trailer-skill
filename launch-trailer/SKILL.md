@@ -18,7 +18,7 @@ compatibility: >-
   builds need the engine's own fixed-rate render route. Works best with subagents and an image-capable
   critic; without one, the user reviews the stills.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Launch Trailer: short films from the real build
