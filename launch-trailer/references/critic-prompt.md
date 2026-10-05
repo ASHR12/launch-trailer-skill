@@ -104,7 +104,7 @@ VERDICT: PLAN-OK
 SCOPE: plan
 BAR: v<N> (<count> criteria)
 (or VERDICT: PLAN-GAPS with the same lines plus a numbered list: the must-show items the storyboard
-misses, a hook that breaks T4, slots too short for their payoff)
+misses, an opening that breaks T4, slots too short for their payoff)
 
 Review files missing:
 VERDICT: INCOMPLETE
@@ -131,7 +131,7 @@ CRITERIA:
 T1 Brief fit: PASS. Sheets 1-8 show every must-show item: six lands (land-plains to land-lush), building (build-house frame 650), places (place-village to place-dungeon), crafting, animals, weather, night creatures, the guide arrow (guide-arrow frame 2660), the teleport landing (tp-gate frame 2810) and the finale.
 T2 Real footage: PASS. The takes manifests list a take from build 3f9c2e1 for all 54 filmed slots; extra-mac is the declared graphic slot.
 T3 Frame integrity: FAIL. build-wool frame 775 shows sky through a missing piece of ground at the left edge; craft-sleep frames 2554-2599 are black with the HUD still drawn; tp-enter frames 2794-2798 show an empty loading sky.
-T4 Hook: PASS. Frames 0-74 dive past a sunlit ridge; frame 75 cuts to the explosion; the logo is fully in by frame 149.
+T4 Opening: PASS. Frames 0-74 dive past a sunlit ridge; frame 75 cuts to the explosion; the logo is fully in by frame 149, inside the 3 s TRAILER.md sets.
 T5 Rhythm and motion: FAIL. checks: the titles probe shows the titles one frame late on frames 0-350 and 3125-3599; craft-furnace frames 1488-1524 are frozen.
 T6 Readable and true: FAIL. place-temple frame 1130 reads "10 PLACES TO FIND"; TRAILER.md's source for places lists 9 kinds.
 T7 End card: FAIL. finale-card frame 3560: the logo built from blocks in the world shows through behind the card's own logo.

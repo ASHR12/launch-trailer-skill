@@ -1,60 +1,66 @@
 # Brief and story
 
-Read before proposing a trailer, and again before fixing the timeline. The brief turns "make a crazy launch video" into a length, a shape, a hook and a storyboard the user has said yes to.
+Read before proposing a trailer, and again before fixing the timeline. The brief turns a request for a trailer into a use case, a length and pace, shapes, an opening and a storyboard the user has agreed.
 
 ## Questions to ask
 
-Ask only what the request leaves open; offer a default for each.
+Ask only what the request leaves open. Where the user has no preference, propose a value with a reason and let them confirm it.
 
-| Question | Why it matters | Default |
+| Question | Why it matters | When the request does not say |
 | :--- | :--- | :--- |
-| Who should watch it, and where will it be posted? | Feeds reward a 1-second hook and vertical video; a store page or site suits 16:9 | social feeds and a site |
-| How long, which shapes, which frame rate? | Sets the shot count and the grid | 60 s or less, 16:9 at 1920x1080, 60 fps |
-| Everything, or the best few things? | "Cover everything" means about a second per feature | the best moments, every major feature glimpsed |
-| Tone? | Music, colour and titles follow it | energetic and bright |
-| Music and voice? | Rights, and whether someone records lines | music composed for it, no voice |
-| End card and call to action? | The one thing viewers should do next | logo, "Play now" or "Try it free", the address |
+| Who should watch it, and where will it be posted? | It picks the use case, and with it the length, pace, shapes and opening | infer it from the request (a launch, a store listing, a social post) and say which you assumed |
+| How long, which shapes, which frame rate? | Sets the shot count and the grid | the use case's range below; 16:9 at 1920x1080; 60 fps for games, 30 for most apps |
+| Everything, or the best few things? | Covering every feature leaves each one only a short slot | the best moments, every major feature glimpsed |
+| Tone and music style? | Music, colour and titles follow it | the product's own look and sound |
+| Voice-over and captions? | Rights, a speaker's consent, viewers who watch muted | the use case's row below |
+| End card and call to action? | The one thing viewers should do next | the use case's row below |
 | Which data or world to film in? | Real content looks best, but the user's own save must stay untouched | a copy loaded only into the capture profile |
 | Anything never to show? | Personal names, accounts, unfinished features, other brands | none of those |
 | Where do the files go, and may you install tools? | Videos are large and stay out of version control | a folder the user names; ask before installing |
 
-When the user names a length, treat it as a maximum. Long cuts lose viewers: in the BlockHaven run the user cut the plan from two minutes to one ("2 min is too much").
+Use the length the user gives, rounded to whole bars at the chosen tempo ([The beat grid](#the-beat-grid)): down when it is a hard cap, such as a store's limit or an ad slot, and to the nearest bar otherwise.
 
-## Formats and lengths
+## Use cases, lengths and pacing
 
-| Format | Length | Shots | Notes |
-| :--- | :--- | :--- | :--- |
-| Teaser | 6 to 15 s | 5 to 12 | one hook, the title, the end card |
-| Launch trailer | 30 to 60 s | 20 to 55 | every major feature glimpsed, chapters with titles |
-| Feature or gameplay movie | 60 to 120 s | 40 to 90 | slower, longer takes, can explain more |
-| App demo | 30 to 90 s | 10 to 30 | the result first, then three to five payoffs |
-| Vertical cut | 15 to 60 s | as the source | the same timeline reframed, or a tighter edit |
-| Loop | 3 to 6 s | 1 to 3 | for a page header or a share card; seamless |
+Starting points for the proposal when the brief is silent; whatever the user specifies wins. Pick the row for where the video will be posted, say why, and confirm it in Rule 0. Platform limits change, so check the current ones for each place it will be posted.
+
+| Use case | Length | Typical shot | Opening and name | Voice and sound | End card |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Teaser | 6 to 30 s | 0.5 to 2 s | one striking moment; the name can wait for the end | music or sound design; voice rarely | the name, and a date if there is one |
+| Launch trailer | 30 s to 2 min | 0.8 to 2 s in a montage, longer in a story | the strongest moving shot; the name early for feeds, or as the payoff of a story | music-led; voice-over or captions when the story needs words | logo, call to action, platforms and where to get it |
+| Store-page video | 30 s to 2 min; app stores can cap previews far shorter | 2 to 5 s of real play | play from the first second; the page already shows the name | the product's sound and music; captions, since pages often start muted | short, or none |
+| Vertical social clip | 10 to 60 s | 0.5 to 1.5 s | the most striking moment in the first second or two, the name early | music; captions for viewers watching muted | name and where to find it, inside the vertical safe area |
+| App demo | 30 s to 2 min | 2 to 5 s per step | the result first, then the problem and the steps | voice-over or captions explaining each step | name, call to action, address or store badges |
+| Gameplay movie | 1 to 5 min | 3 to 10 s | the game as it plays | game audio first; commentary if wanted | name and where to get it |
+| Loop | 3 to 6 s | 1 to 3 shots in all | seamless, no opening | none, or ambient | none |
+
+The shot count follows from the length and the pace: a 45-second montage at about 1.2 s a shot holds about 35 shots; a 90-second app demo at 4 s a step holds about 20.
 
 ## Story shapes
 
-1. **Montage** (the BlockHaven trailer): hook, title slam, chapters in energy order with a two-to-five-word title on each chapter's first beat, a finale, the end card.
+1. **Montage** (the BlockHaven trailer): the opening, a title slam, chapters in energy order with a two-to-five-word title on each chapter's first beat, a finale, the end card.
 2. **Transformation**: start from nothing (one block in the sky, an empty canvas, a blank document), the product builds it in seconds, the camera pulls back to reveal the whole, the logo.
 3. **Small story**: a player or user's journey in five beats (start, gather, build, danger, triumph), with the title in the climax.
 4. **App arc**: the result first (the finished thing on screen), the problem in two or three seconds, the product solving it in three to five payoffs, then the call to action.
 
-## The hook
+## The opening
 
-The first second decides whether anyone sees the second. Frame 1 is moving and already striking; the title or product name lands by about 3 seconds.
+Write the opening into the brief: what frame 1 shows, and when the name appears. In feeds, viewers decide within the first second or two, so a feed cut opens on its most striking moving shot and shows the name early. A story trailer or a cinematic teaser can build more slowly and save the title for the payoff, as long as frame 1 already moves or intrigues.
 
-Good hooks:
+Openings that work:
 - **Speed and scale**: a fast dive or flyover that passes close to something for parallax.
 - **The action peak**: the biggest explosion, boss, crash or win, in slow motion, cut hard on the first big beat.
 - **A transformation in two seconds**: empty to built, night to day, sketch to finished.
 - **The result first** (apps): the impressive output before the steps that made it.
+- **A slow reveal** (story trailers, teasers): a push-in through darkness toward a light, a sound before the picture, then a hard cut on the first big beat.
 
-Never open on darkness, a slow fade in, a studio logo, a splash or loading screen, a menu, or the product's tools. In the BlockHaven run the user rejected an opening near the product's in-game guide: "you have to hook the people in the first few seconds. If you show the guide, why will people like it?" The fix: a sunrise dive over snowy peaks on frame 1, a hard cut to a slow-motion explosion on the first big beat, the title through the smoke at about 2 seconds.
+Avoid opening on a splash or loading screen, a menu or the product's tools; use a studio logo or a slow fade in only when the brief asks for one. The case studies opened both ways: BlockHaven's montage on a sunrise dive over snowy peaks, a hard cut to a slow-motion explosion on the first big beat, and the title through the smoke at about 2 seconds; Lightning Sortie's on a slow push-in through a dark hangar, with the title slamming in at 4 seconds over a night afterburner pass.
 
 ## Energy order and pacing
 
 - Bright spectacle and action first; contrast (night, danger, depth) in the middle; tools and conveniences as quick flashes near the end; the biggest moment and the logo in the finale.
-- Interface moments get about a second in total, then cut to their payoff in the world: a search result pops up, cut to the arrow leading across the landscape; a command is typed, cut to the teleport landing.
-- Slot lengths that worked at 60 fps and 144 BPM: lands and places 2 beats (0.83 s), interface flashes 1 to 1.5 beats, action set pieces 3 to 5 beats, the end card 6 beats (2.5 s). A 60-second cut held 54 shots.
+- Interface moments are short beats followed by their payoff in the world: a search result pops up, cut to the arrow leading across the landscape; a command is typed, cut to the teleport landing.
+- Work out slot lengths from the brief: its length, the must-show count and the pace give the beats per shot, and the best moments get the most time. BlockHaven's fast montage (60 fps, 144 BPM) gave lands and places 2 beats (0.83 s), interface flashes 1 to 1.5 beats, action set pieces 3 to 5 beats and the end card 6 beats (2.5 s): 54 shots in 60 seconds. Lightning Sortie's 58 seconds at 120 BPM held 19 slots, about 3 seconds each on average.
 - Vary scale and direction from shot to shot (wide, close, aerial, first person; left-moving after right-moving); never use a shot twice.
 
 ## The beat grid
@@ -69,7 +75,7 @@ Frames per beat = fps × 60 / BPM. Pick a tempo that gives whole frames, so ever
 
 - Half-beat slots are fine even when a half beat is not a whole number of frames (12.5 at 144 BPM and 60 fps): slot starts are rounded on the cumulative beat (as `placedCut()` in [project-files.md](project-files.md) does), never slot by slot, so no cut point is more than half a frame off. Prefer a tempo where half beats are whole too (120 BPM at 60 fps gives 15) when slots will be that short.
 - If the trailer must also exist at another frame rate, choose a tempo that works for both.
-- Make the length a whole number of bars: 60 s is 36 bars at 144 BPM or 30 bars at 120 BPM; 30 s is 18 bars at 144 BPM or 15 at 120.
+- **The length in bars**: bars = seconds × BPM / 240 in 4/4. A 30-second brief is 15 bars at 120 BPM; a 45-second brief is exactly 27 bars at 144 BPM, or 22.5 at 120 BPM, so 22 bars (44 s) when 45 seconds is a cap and 23 (46 s) otherwise. Or pick the tempo that fits.
 - **A licensed or existing track sets the grid**: its tempo and its first downbeat decide the timeline, and chapters follow its phrases. See [audio.md](audio.md), Cutting to a licensed track.
 - **Hits** are named beats where the picture, the titles and the music all land together: the first big cut, the title, a lightning strike, the logo, the call to action, the final hit. The music and the shake read them from the timeline.
 
@@ -88,11 +94,11 @@ For each shot, write the subject, the camera move, the action, the start state a
 
 ## The storyboard for approval
 
-Show a table the user can read in a minute, with your estimate below it:
+Show a table the user can read in a minute, with your estimate below it. BlockHaven's, abridged:
 
 ```markdown
 | Time | Chapter | What you see | Title |
-| 0:00 | Hook | fast dive over sunlit peaks, hard cut to a slow-motion explosion | |
+| 0:00 | Opening | fast dive over sunlit peaks, hard cut to a slow-motion explosion | |
 | 0:02 | Title | the logo slams in through the smoke | BLOCKHAVEN |
 | 0:03 | World | one block in the sky, the world builds itself, six lands | A world that never ends · 25 lands |
 | ... | | | |

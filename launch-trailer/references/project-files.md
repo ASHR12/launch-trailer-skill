@@ -8,7 +8,7 @@ A trailer lives in plain files, so the user, another agent or a fresh session ca
 <product repo>/
   tools/trailer/              committed: everything needed to re-render
     README.md                 how to re-render, how to change one thing, how long it takes
-    TRAILER.md                the brief, the storyboard, decisions in the user's words, the sources ledger
+    TRAILER.md                the brief, the storyboard, decisions, the sources ledger
     BAR.md                    the trailer bar the critic grades (format in review.md)
     timeline.<ext>            the grid, chapters, hits and slots: the one source of truth
     shots/                    one script per shot, grouped by chapter
@@ -42,7 +42,8 @@ Created: <date> · Status: <proposal | approved | filming | cut vNN | delivered>
 <one sentence: who should watch it, and what they should do after>
 
 ## Format
-- Length: <seconds>, one edit rendered per shape
+- Use case: <teaser | launch trailer | store-page video | vertical social clip | app demo | gameplay movie | loop | ...>
+- Length: <seconds, and whether it is a cap>; pace: <typical shot length>; one edit rendered per shape
 - Shapes: <16:9 1920x1080 | 9:16 1080x1920 | ...> at <fps>
 - Where it will be posted: <platforms>, and where the files go: <delivery folder>
 
@@ -51,22 +52,24 @@ Created: <date> · Status: <proposal | approved | filming | cut vNN | delivered>
 
 ## Story
 - Direction: <montage | transformation | story | app arc>
-- Hook (frame 1 to about 3 s): <what the viewer sees>
+- Opening: <what frame 1 shows, and when the name appears>
 - Storyboard: | Time | Chapter | What you see | Title on screen |
-- End card: <logo, call to action, where to get it>
+- End card: <its content, and how long it holds>
 
 ## Sound
-- Music: <source>, <tempo> BPM; voice: <none | who, with consent>
+- Music: <style and source>, <tempo> BPM; voice-over: <none | who, with consent>; captions: <none | speech | key lines>
 
-## Decisions (the user's words)
-- <date>: "<quote>" -> <what changed>
+## Decisions
+- <date>: <decision> (<reason>)
 
 ## Sources ledger
 | Element | Source (filmed, composed, licensed, product asset) | License | Proof |
 
 ## Never show
-- <personal names and data, real accounts, other brands, unfinished features>
+- <personal names and data, real accounts, other brands, unfinished features, any date or version number the brief does not ask for>
 ```
+
+Mark each value the user did not set as proposed (for example `Length: 45 s (proposed for a launch trailer)`) until they confirm it.
 
 ## The shot list
 
@@ -82,11 +85,14 @@ One row per slot, in timeline order. The shot id is also the script name and the
 Code, not prose, so every tool reads the same numbers. Use the project's language.
 
 ```ts
+// Inputs: the frame rate and the length come from the brief, the tempo from the music.
 export const FPS = 60;
-export const BPM = 144;
-export const FRAMES_PER_BEAT = (FPS * 60) / BPM;          // 25
-export const TOTAL_BEATS = 144;                            // 36 bars of 4/4
-export const TOTAL_FRAMES = Math.round(TOTAL_BEATS * FRAMES_PER_BEAT); // 3,600 = 60.000 s
+export const BPM = 120;
+export const BEATS_PER_BAR = 4;
+export const FRAMES_PER_BEAT = (FPS * 60) / BPM;                       // 30
+export const TOTAL_BARS = 23;                                           // a 45 s brief is 22.5 bars; 22 if 45 s is a cap
+export const TOTAL_BEATS = TOTAL_BARS * BEATS_PER_BAR;                  // 92
+export const TOTAL_FRAMES = Math.round(TOTAL_BEATS * FRAMES_PER_BEAT); // 2,760 = 46.000 s
 
 export const CHAPTERS = [
   { id: 'open', startBeat: 0 },
@@ -95,7 +101,7 @@ export const CHAPTERS = [
 ];
 
 /** Moments the picture, the titles and the music all hit, in beats. */
-export const HITS = { boom: 3, title: 5, logo: 133, playNow: 138, final: 140 };
+export const HITS = { boom: 3, title: 5, logo: 81, cta: 86, final: 88 };
 
 /** The cut, in order; a slot may be a half beat. */
 export const CUT = [
@@ -154,7 +160,7 @@ Kept in the delivery folder, newest last. Every cut the user saw stays on disk. 
 ```markdown
 | Shape | Version | File | When | What changed | Checks | Critic | User |
 | 16x9 | v01 | <Product>-Trailer-16x9-v01.mp4 | <time> | first full cut | pass | FAIL: T3, T6 | not shown |
-| 16x9 | v02 | <Product>-Trailer-16x9-v02.mp4 | <time> | re-took build-wool, craft-sleep; places count 9 | pass | WIN | "it's awesome"; drop the hours line |
+| 16x9 | v02 | <Product>-Trailer-16x9-v02.mp4 | <time> | re-took build-wool, craft-sleep; places count 9 | pass | WIN | approved; one end-card line to drop |
 | 9x16 | v01 | <Product>-Trailer-9x16-v01.mp4 | <time> | the 16x9 v02 timeline, reframed | pass | FAIL: T11 | not shown |
 ```
 
@@ -175,4 +181,4 @@ Write it before handover. It answers, in this order:
 3. How to change one thing without redoing the rest: one shot, one title, the music, the order or a slot's length.
 4. Inputs that are not in the repo (the data copy to film in, a licensed track) and how to pass them, by option or environment variable rather than a hard-coded personal path.
 5. How to make the other shapes later, if they were planned but not rendered.
-6. How much disk the scratch folder takes, and that it is safe to delete once the user is happy.
+6. How much disk the scratch folder takes, and that it can be deleted once the final cut is approved and the user agrees.

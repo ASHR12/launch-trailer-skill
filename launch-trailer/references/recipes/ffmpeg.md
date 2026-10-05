@@ -2,6 +2,8 @@
 
 Commands for every step after capture. Each one was run end to end on short generated test clips; adapt sizes, frame counts and paths. They are written for bash; long filter graphs go in a file passed with `-filter_complex_script`, which avoids quoting trouble. In filter files and expressions, escape commas inside functions as `\,`.
 
+The commands assume 60 fps (for another rate, change every `60` that is a frame rate: `-r`, `settb=1/60`, `r=60`, and `-g` to twice the rate). `FRAMES` is the timeline's `TOTAL_FRAMES` and `DUR` its length in seconds, rounded up to a whole number; set both from the timeline, for example `FRAMES=2760 DUR=46` for 23 bars at 120 BPM.
+
 ## Contents
 
 - Lossless takes
@@ -87,7 +89,7 @@ On a test clip this changed only the hit's frames, and every 4x4 art cell of a s
 ## The master encode
 
 ```bash
-ffmpeg -i cut-picture.mkv -i audio/mix.wav -map 0:v -map 1:a -frames:v 3600 -r 60 \
+ffmpeg -i cut-picture.mkv -i audio/mix.wav -map 0:v -map 1:a -frames:v "$FRAMES" -r 60 \
   -vf "scale=out_color_matrix=bt709:out_range=tv,format=yuv420p" \
   -c:v libx264 -preset slow -crf 15 -profile:v high -pix_fmt yuv420p \
   -colorspace bt709 -color_primaries bt709 -color_trc bt709 -color_range tv \
@@ -125,7 +127,7 @@ ffmpeg -i cut-picture-no-titles.mkv -vf "select=eq(n\,1210),scale=1200:-2,crop=1
 
 ```bash
 # A still at an exact frame
-ffmpeg -i master.mp4 -vf "select=eq(n\,100)" -fps_mode passthrough -frames:v 1 -q:v 2 still-1-hook.jpg
+ffmpeg -i master.mp4 -vf "select=eq(n\,100)" -fps_mode passthrough -frames:v 1 -q:v 2 still-1-opening.jpg
 
 # One contact sheet: first, middle and last frame of three slots, three per row
 ffmpeg -i master.mp4 -vf "select='eq(n\,0)+eq(n\,30)+eq(n\,59)+eq(n\,60)+eq(n\,85)+eq(n\,109)+eq(n\,110)+eq(n\,130)+eq(n\,149)',\
@@ -176,10 +178,10 @@ for l in sys.stdin: t,s=l.strip().split(',')[:2]; b[int(float(t))]+=int(s)*8
 **Frame-counter probe** for the titles overlay: render a stand-in titles layer whose top-left 16x16 pixels hold the frame number as brightness, run the real cut graph with it, and read the corner back. Every output frame must show its own number (modulo 256):
 
 ```bash
-ffmpeg -f lavfi -i "color=c=black@0:s=1920x1080:r=60:d=61,format=rgba,\
+ffmpeg -f lavfi -i "color=c=black@0:s=1920x1080:r=60:d=$((DUR + 1)),format=rgba,\
 geq=r='if(lt(X\,16)*lt(Y\,16)\,mod(N\,256)\,0)':g='if(lt(X\,16)*lt(Y\,16)\,mod(N\,256)\,0)':\
 b='if(lt(X\,16)*lt(Y\,16)\,mod(N\,256)\,0)':a='if(lt(X\,16)*lt(Y\,16)\,255\,0)'" \
-  -frames:v 3600 -c:v png -pix_fmt rgba counter.mov
+  -frames:v "$FRAMES" -c:v png -pix_fmt rgba counter.mov
 # ... run the cut graph with counter.mov as the titles input, writing probe.mkv, then:
 ffmpeg -i probe.mkv -vf "crop=16:16:0:0,format=gray" -f rawvideo counter.gray
 python3 -c "
@@ -195,9 +197,9 @@ Write every stem as 32-bit float WAV (`-c:a pcm_f32le`): a float stem keeps a pe
 
 ```bash
 # events.json: [{"time": 0.5, "file": "sfx/splash.wav", "gainDb": -3, "rate": 1}, ...]  time is seconds in the cut
-python3 - <<'EOF' > stem.args
-import json
-ev = json.load(open('events.json')); seconds = 60
+python3 - "$DUR" <<'EOF' > stem.args
+import json, sys
+ev = json.load(open('events.json')); seconds = float(sys.argv[1])
 ins, parts = [], []
 for i, e in enumerate(ev):
     ins += ['-i', e['file']]
@@ -208,7 +210,7 @@ mix = ''.join(f'[e{i}]' for i in range(len(ev)))
 print(' '.join(ins))
 print(';'.join(parts) + f";{mix}amix=inputs={len(ev)}:normalize=0:duration=longest,apad=whole_dur={seconds}[out]")
 EOF
-ffmpeg -nostdin $(sed -n 1p stem.args) -filter_complex "$(sed -n 2p stem.args)" -map "[out]" -t 60 -ac 2 -c:a pcm_f32le audio/sfx.wav
+ffmpeg -nostdin $(sed -n 1p stem.args) -filter_complex "$(sed -n 2p stem.args)" -map "[out]" -t "$DUR" -ac 2 -c:a pcm_f32le audio/sfx.wav
 ```
 
 `asetrate` changes pitch and speed together, as a game's playback rate does. Paths with spaces need the argument list built in a script rather than through `$(...)`. On a test log the sounds started at exactly their times (0.5, 1.5 and 2.0 s).
@@ -239,7 +241,8 @@ ffmpeg -hide_banner -nostats -i audio/mix.wav -af ebur128=peak=true -f null - 2>
 # First onset: the first silence_end
 ffmpeg -nostdin -hide_banner -nostats -i track.wav -af silencedetect=noise=-40dB:d=0.05 -f null - 2>&1 | grep -m1 'silence_end'
 
-# A click on every beat from the downbeat (here 120 BPM from 0.35 s), mixed under the track for the user to hear
+# A click on every beat from the downbeat (here 120 BPM from 0.35 s; d=60 makes 60 s of clicks, so set it to
+# the track's length), mixed under the track for the user to hear
 ffmpeg -f lavfi -i "aevalsrc='if(gte(t\,0.35)\,0.5*sin(2*PI*1500*t)*exp(-200*mod(t-0.35\,60/120))\,0)':s=48000:d=60" -ac 2 click.wav
 ffmpeg -i track.wav -i click.wav -filter_complex "[0:a][1:a]amix=inputs=2:normalize=0" check-click.wav
 

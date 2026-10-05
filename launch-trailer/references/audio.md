@@ -10,7 +10,7 @@ Read when choosing music, building the effects stem and mixing. Commands are in 
 - The product's own sounds
 - Mixing and loudness
 - Sync
-- Voice
+- Voice and captions
 - The sources ledger
 
 ## What you may use
@@ -26,16 +26,16 @@ Read when choosing music, building the effects stem and mixing. Commands are in 
 
 The same rules cover fonts (the product's own, with their licenses, for example the SIL Open Font License) and recorded voice.
 
-**What the case studies did.** BlockHaven: music composed in code from the game's own synth kit, instruments and mix graph (three original themes, D major with a minor turn for the night monsters and a lift to E major for the finale, 144 BPM), effects rendered with the game's own sound recipes, no voice. Lightning Sortie: original music synthesized from oscillators and noise in an offline audio context (120 BPM, D minor lifting to D major on the end card), effects synthesized and driven by logged gameplay, no voice.
+**What the case studies did.** BlockHaven: music composed in code from the game's own synth kit, instruments and mix graph (three original themes, D major with a minor turn for the night monsters and a lift to E major for the finale, 144 BPM), effects rendered with the game's own sound recipes. Lightning Sortie: original music synthesized from oscillators and noise in an offline audio context (120 BPM, D minor lifting to D major on the end card), effects synthesized and driven by logged gameplay.
 
 ## Music on the grid
 
 - **Score as data.** Notes, drums and effects are events in beats, built from the timeline's chapters and hits: every hit gets a hit in the music, sections follow the chapters, and a re-timed edit re-times the music on the next render.
 - **A trailer arc**:
-  - energy from the first frame, or a short riser straight into the first big hit on the hook's hard cut;
+  - energy from the first frame, or a short riser straight into the first big hit on the opening's hard cut;
   - the title on a hit;
   - a fill or a crash into each chapter's first beat;
-  - a darker colour for the contrast section (a minor or modal turn, a half-time feel), pitched to the audience (BlockHaven's young players got cheeky rather than scary);
+  - a darker colour for the contrast section (a minor or modal turn, a half-time feel), matched to the brief's tone and audience (menacing for a horror game, playful for a family game);
   - a lift for the finale (up a step, the full arrangement);
   - the final hit under the logo or the call to action, with a tail that rings out to the last frame.
 - **Original melodies only**; never quote or imitate a known tune.
@@ -52,7 +52,7 @@ When the user wants a track they bought or licensed, the music leads and the pic
 2. **Find the tempo and the first downbeat.** Take the tempo from the library's listing, and the first onset from the audio (`silencedetect`, [recipes/ffmpeg.md](recipes/ffmpeg.md)). Make a check file with a click on every beat from that downbeat mixed under the track, and have the user listen: drift or an off-beat click shows at once. A track with a drifting tempo (a live recording) needs a beat map, a list of measured beat times, instead of one tempo.
 3. **Let the track set the grid.** The timeline takes the track's tempo, beat 0 at its first downbeat, and chapters on its phrase boundaries (every 4 or 8 bars). If the tempo does not give whole frames per beat, slot starts round on the cumulative beat.
 4. **Cut the track to length on bar lines**: keep the sections that fit the arc (the strongest opening, a build, the peak, the track's own ending under the end card), and join them exactly on bar lines with crossfades of a few tens of milliseconds. Use the track's real ending; a fade-out is the last resort.
-5. **Hits come from the music**: put the picture's big moments (the hook's hard cut, the title, the finale) on the track's accents, not the other way round.
+5. **Hits come from the music**: put the picture's big moments (the opening's hard cut, the title, the finale) on the track's accents, not the other way round.
 6. **Record it** in the sources ledger with the license file, the track id and the proof of purchase.
 
 ## The product's own sounds
@@ -85,8 +85,8 @@ Synthesized effects work the same way when the product's sounds are not usable: 
 
 ## Mixing and loudness
 
-- Stems as 32-bit float WAV; music plus effects summed without automatic gain changes; an optional dip in the music under the biggest hits.
-- Gain to about **-14 LUFS integrated**, a common target for web and social video, then a limiter, with **true peak at or under -1 dBTP measured on the final encoded file**. Most feed and streaming players normalize loudness, so a louder mix gains nothing and adds distortion.
+- Stems as 32-bit float WAV; music, effects and any voice summed without automatic gain changes; an optional dip in the music under the biggest hits and under speech.
+- Gain to about **-14 LUFS integrated**, a common target for web and social video (use the platform's or the brief's target when it sets another), then a limiter, with **true peak at or under -1 dBTP measured on the final encoded file**. Most feed and streaming players normalize loudness, so a louder mix gains nothing and adds distortion.
 - Loudness range around 3 to 6 LU suits a trailer; much less sounds squashed (the Lightning Sortie test mix at 3.9 LU with a loud bed was over-compressed).
 - Check by measurement: integrated loudness, true peak, loudness range, a per-second loudness contour (sections should step, hits should stand out), a spectrogram (a continuous bed covering the music shows as a band), and no clipped samples.
 - 48 kHz stereo throughout; AAC at 256 kbit/s in the master.
@@ -99,9 +99,11 @@ Both case studies landed at -14.0 LUFS. Lightning Sortie's final file peaked at 
 - Remove the measured delay of any processor with lookahead (compressors, limiters) from the music and the effects.
 - Check the final file against the mix by cross-correlation at a few sharp transients (expect 0 samples), and spot-check that flashes, impacts and door clicks land on their frames.
 
-## Voice
+## Voice and captions
 
-Only when the user asks for it, and only with the speaker's consent; the BlockHaven plan offered optional recorded lines, and the user chose music and game sounds only. Record clean, dip the music under speech, and caption it. A synthetic voice needs a license that covers promotional use and any disclosure the platforms require.
+Voice-over is the brief's call. Propose it where words help (app demos, story trailers, explainers) and leave it out where music and the product's sounds carry the cut; when the brief is silent, follow the use case's row in [brief-and-story.md](brief-and-story.md). Record a voice only with the speaker's consent. Record clean, dip the music under speech, and caption it. A synthetic voice needs a license that covers promotional use and any disclosure the platforms require.
+
+Captions carry speech and key lines for viewers who watch muted, as many do in feeds and on store pages. Put them in the titles layer, inside the safe area of every shape, and check their spelling and timing like any title.
 
 ## The sources ledger
 

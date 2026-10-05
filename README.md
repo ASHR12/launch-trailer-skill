@@ -1,6 +1,6 @@
 # launch-trailer-skill (`launch-trailer`)
 
-An agent skill for making launch trailers, teasers, promos and other short movies from your own game or app. A lead agent agrees a hook-first brief and storyboard with you, films every shot from the real running build with time under its control, cuts the takes to music on a beat grid with titles and an end card, and loops preview stills, a sample cut, mechanical checks and a **fresh critic** until the cut passes a PASS/FAIL bar and you approve it.
+An agent skill for making launch trailers, teasers, promos, store-page videos, social clips and other short movies from your own game or app. A lead agent agrees a brief and storyboard with you (length, pacing, voice, music and end card as you want them, or proposed to suit where the video will be posted), films every shot from the real running build with time under its control, cuts the takes to music on a beat grid with titles and an end card, and loops preview stills, a sample cut, mechanical checks and a **fresh critic** until the cut passes a PASS/FAIL bar and you approve it.
 
 The skill is **instructions only**. It bundles no code and assumes no particular agent: each agent uses the tools its environment provides (a shell, ffmpeg, browser automation such as Playwright, subagents if it has them) and writes the small tools a trailer needs inside your project. Tested recipes for the hard parts (a stepped clock for browser builds, the capture loop, every ffmpeg command) are in `references/recipes/`.
 
@@ -24,7 +24,7 @@ flowchart TD
     B --> TL["Titles layer drawn per frame"]
     K --> S["Sample: the first 10-15 s with music"]
     M --> S
-    S -- "hook not working" --> K
+    S -- "opening not working" --> K
     S --> C["Cut vNN: assemble, renumber, shake, titles, mix, encode"]
     TL --> C
     C --> X{"Mechanical checks"}
@@ -40,7 +40,7 @@ flowchart TD
 
 | Phase | Output | Gate |
 | :--- | :--- | :--- |
-| Brief | `TRAILER.md`: length, shapes, must-show list, hook, storyboard, end card, music, decisions | the user says go |
+| Brief | `TRAILER.md`: use case, length and pace, shapes, must-show list, opening, storyboard, voice, music, end card, decisions | the user says go |
 | Timeline | slots on a beat grid, the shot list, the hits | the slots add up |
 | Tooling and preview | hooks, clock, capture loop; three stills per shot | the user has seen the stills |
 | Takes, music, titles | lossless takes, the score, the titles layer | every slot has a take |
@@ -48,13 +48,14 @@ flowchart TD
 
 What it guards against:
 
-1. **Slow openings**: frame 1 moves and impresses, the title lands by about 3 seconds, interface shots are flashes followed by their payoff.
-2. **Fake footage**: every frame comes from the real build; only declared graphic slots, such as the end card, are drawn.
-3. **Uneven motion and drift**: a virtual clock steps exactly one frame at a time; cuts, titles and music share one beat grid; frames are renumbered before titles go on top, and a frame-counter probe proves it.
-4. **Self-grading**: whoever made the cut never grades it. A fresh critic grades a versioned bar from contact sheets, full-size frames and a mechanical report, or the user grades when no critic can view images.
-5. **Surprises**: time and disk estimates up front, a preview folder in the first hour, a sample before the full render, and honest status when a change adds time.
-6. **Lost work**: every cut gets a new version number, and raw footage, earlier cuts and previews stay until the user says they are happy.
-7. **Rights and privacy**: music, sounds and fonts are original or licensed and recorded; no personal data, real accounts, other brands, version numbers or dates on screen.
+1. **Guessing the brief**: length, pacing, voice, music and the end card come from you; where you have not said, the agent proposes what suits the use case and platform (a teaser, a launch trailer, a store-page video, a vertical social clip, an app demo, a gameplay movie) and confirms it before filming.
+2. **Weak openings**: frame 1 moves and shows the product at its best, the name appears when the brief says, and interface shots are followed by their payoff.
+3. **Fake footage**: every frame comes from the real build; only declared graphic slots, such as the end card, are drawn.
+4. **Uneven motion and drift**: a virtual clock steps exactly one frame at a time; cuts, titles and music share one beat grid; frames are renumbered before titles go on top, and a frame-counter probe proves it.
+5. **Self-grading**: whoever made the cut never grades it. A fresh critic grades a versioned bar from contact sheets, full-size frames and a mechanical report, or the user grades when no critic can view images.
+6. **Surprises**: time and disk estimates up front, a preview folder in the first hour, a sample before the full render, and honest status when a change adds time.
+7. **Lost work**: every cut gets a new version number, and raw footage, earlier cuts and previews stay until the final cut is approved.
+8. **Rights and privacy**: music, sounds and fonts are original or licensed and recorded; no personal data, real accounts or other brands on screen.
 
 ## Layout
 
@@ -63,11 +64,11 @@ launch-trailer-skill/
   README.md                   this file
   LICENSE                     MIT license for the repo
   launch-trailer/             the skill
-    SKILL.md                  the pipeline, Rule 0, story rules, capture, edit, audio, delivery, review, non-negotiables
+    SKILL.md                  the pipeline, Rule 0, story defaults, capture, edit, audio, delivery, review, non-negotiables
     LICENSE                   MIT license, shipped with the skill
     references/
       project-files.md        layout, TRAILER.md, shot list, timeline file, takes manifest, CUTS.md, re-render README
-      brief-and-story.md      questions, formats and lengths, story shapes, hooks, the beat grid, pacing
+      brief-and-story.md      questions, use cases with lengths and pacing, story shapes, openings, the beat grid
       capture.md              capture routes, frozen builds, reaching the product, deterministic time, staging, camera, pixel art
       edit-and-titles.md      assembly, the titles layer, readability, transitions, colour, the end card, vertical layouts
       audio.md                music rights, music on the grid, licensed tracks, the product's own sounds, mixing, loudness

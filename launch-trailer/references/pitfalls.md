@@ -1,21 +1,21 @@
 # Pitfalls
 
-Every row happened in a real trailer run (BlockHaven, Lightning Sortie, or a map app's trailer made the same day as Lightning Sortie). Read the section for the phase you are in; scan the whole file when something looks wrong and you do not know why.
+Every row comes from a real trailer run. Read the section for the phase you are in; scan the whole file when something looks wrong and you do not know why.
 
-## Story, process and the user
+## Story and process
 
 | Symptom | Cause | Fix |
 | :--- | :--- | :--- |
-| The user: "you have to hook the people in the first few seconds" | the plan opened on a slow dark cold open, and the tools appeared too early | spectacle on frame 1, the title by about 3 s, tools as late, short flashes |
-| "2 min is too much" | "cover everything" planned at 2 to 3 s per feature | 60 s at most; about a second per feature; the best moments get the time |
-| The user grew frustrated as estimates rose | a creative change added work and the estimate quietly grew | say what a change costs when it happens, and offer a faster path |
-| "You said raw footage will be 14 GB?!" | scratch size was never mentioned up front | estimate disk in the proposal; separate the video's size from the scratch folder's |
-| "Do we have any sample yet?" | hours of work with nothing to look at | a preview stills folder within the first hour, a sample before the full render |
-| A status message to the user was wrong | a coordinator relayed a guess from a log tail | report only what you checked |
-| "I just want to know the answer, don't make any edit" | a question was treated as a change request | answer questions; edit only when asked |
-| "Remove version totally" | a version label on the end card and in a callout, stale within hours (a hotfix shipped mid-edit) | no version numbers, dates or "new in" labels on trailers |
-| "...much sharper than what I have actually in the game" | 2x supersampled capture | say plainly: real content, rendered at the build's best quality |
-| A map app's trailer could have shown where the user lives | real location data on screen | film somewhere else; check every frame for homes, street names and personal pins |
+| The opening changed mid-run and reshaped the whole order | the storyboard put a slow cold open and the product's tools first | agree the opening in the storyboard; tools late, as short flashes followed by their payoff |
+| A storyboard covering every feature ran far past the length that suited the use case | slots planned at 2 to 3 s per feature with no target length | set the length from the brief or the use case first, then derive slot lengths from it; the best moments get the time |
+| Estimates kept rising during the run | a creative change added work and the estimate quietly grew | say what a change costs when it happens, and offer a faster path |
+| The scratch folder's size came as a surprise | disk was never estimated up front | estimate disk in the proposal; separate the video's size from the scratch folder's |
+| Hours of work with nothing to look at | no preview or sample planned | a preview stills folder within the first hour, a sample before the full render |
+| A status report was wrong | a coordinator relayed a guess from a log tail | report only what you checked |
+| A question got an unrequested edit | a question was treated as a change request | answer questions; edit only when asked |
+| A version label on the end card and in a callout went stale within hours | a hotfix shipped mid-edit | version numbers, dates and "new in" labels only when the brief asks; check every on-screen text again before delivery |
+| The trailer looked sharper than live play | 2x supersampled capture | say plainly: real content, rendered at the build's best quality |
+| A map app's trailer could have shown a real home | real location data on screen | film somewhere else; check every frame for homes, street names and personal pins |
 
 ## Capture
 
@@ -34,7 +34,7 @@ Every row happened in a real trailer run (BlockHaven, Lightning Sortie, or a map
 | Animals hidden in tall grass; a pillar blocking a landmark | framing guessed, not checked | preview stills; scouting searches; clear the stage |
 | Night creatures almost black; a dungeon fully black | night and underground light | raise the brightness setting, film at dusk, add light sources |
 | A storm with rain but no visible bolt | a dark night storm, the strike left to chance | a daytime storm, the strike triggered on a chosen frame |
-| The hook's peaks lost in a washed-out orange haze | the camera sat in the fog and cloud layer, with the sun ahead | clouds off and view distance up for the shot, the sun behind the camera |
+| The opening's peaks lost in a washed-out orange haze | the camera sat in the fog and cloud layer, with the sun ahead | clouds off and view distance up for the shot, the sun behind the camera |
 | A coloured band near the ground in a flight shot | the underside of a haze layer | fly higher |
 | A blue fog over a first-person shot | the player was standing in water | check the stand point in the preview |
 | Enemy aircraft flew out of frame | the game's AI steered them away | pin them in a formation for the take |

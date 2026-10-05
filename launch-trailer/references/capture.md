@@ -42,7 +42,7 @@ Film one fixed version of the product: the release commit, plus any debug-only t
 The capture needs a handle on the running product: its game or app instance, its stores, its settings. Try these in order:
 
 1. **Objects already on `window`**: a debug or test API, a framework global, anything the product's own tests use.
-2. **Source modules through a dev server**: a page script can `await import('/src/save/worldStore.ts')` and use the product's own code (the BlockHaven capture imported the game's backup parser and world store this way to load the copy of the user's world).
+2. **Source modules through a dev server**: a page script can `await import('/src/save/worldStore.ts')` and use the product's own code (the BlockHaven capture imported the game's backup parser and world store this way to load the world copy it filmed in).
 3. **One debug-only line** on the trailer branch that exposes the instance behind a URL flag, for example `if (new URLSearchParams(location.search).has('trailer')) window.__game = game;`, plus anything else the capture needs that is not reachable from it (the engine's random generator, a store). This is the smallest change to the product; it does nothing in normal play. Ask the user before changing their code, even this much.
 4. **Wrapping from an init script** works for prototypes and globals loaded as plain scripts; a framework bundled into private modules cannot be reached this way, so fall back to 2 or 3.
 
@@ -111,7 +111,7 @@ In 3D:
 
 | Move | Use | Notes |
 | :--- | :--- | :--- |
-| Dive or flyover | hooks, scale, landscapes | fast, passing within a few units of a ridge or tree for parallax |
+| Dive or flyover | openings, scale, landscapes | fast, passing within a few units of a ridge or tree for parallax |
 | Dolly or push-in | reveal a detail, add tension | ease in and out |
 | Pull-back or crane up | reveal the whole, finales | start close on the subject, end wide and high |
 | Orbit | hero objects, builds, creatures | a third of a turn is plenty in a 2-second slot |
@@ -172,8 +172,8 @@ Do not guess positions for dozens of shots. Write small searches over the loaded
 **For every take**:
 - Pipe frames straight into a lossless RGB intermediate (H.264 RGB at CRF 0, or FFV1), one file per take; never write thousands of loose PNG files unless you must.
 - Use a quick preview mode (three JPEG stills per shot at 1x) for framing, a draft mode (1x, JPEG) for trying a shot, and the full mode for final takes.
-- Supersampled takes look sharper than live play. If the user asks whether the trailer matches the real game, say so plainly: the content is real, the image quality is the best the build can render.
-- Budget: 0.2 to 0.4 s per recorded 2x frame including staging and pre-rolls, so 12 to 25 minutes per minute of 60 fps footage; 5 to 7 GB of lossless takes per minute at 1080p, and 10 to 15 GB of scratch in all for a one-minute trailer once segments, titles and kept versions are counted.
+- Supersampled takes look sharper than live play. When asked whether the trailer matches the real game, say so plainly: the content is real, the image quality is the best the build can render.
+- Budget: 0.2 to 0.4 s per recorded 2x frame including staging and pre-rolls, so 12 to 25 minutes per minute of 60 fps footage; 5 to 7 GB of lossless takes per minute at 1080p, and 10 to 15 GB of scratch in all per minute of trailer once segments, titles and kept versions are counted.
 
 ## Apps, not games
 
@@ -181,8 +181,8 @@ Do not guess positions for dozens of shots. Write small searches over the loaded
 - Headless screenshots show no cursor; draw one in the page (a small overlay that moves along an eased path and clicks with a ripple), or show results without it.
 - Type at a human pace with small variations; paste long text.
 - Zoom into the region that matters, by a CSS transform during capture or a crop in the edit, so the interface reads on a phone.
-- Hide notifications, tooltips that are not part of the story, and anything showing the date or a version number.
-- Map and location features: film somewhere other than the user's home area, and check every frame for street names and personal pins.
+- Hide notifications, tooltips that are not part of the story, and any date or version number the brief did not ask for.
+- Map and location features: film away from where the user or anyone they know lives, and check every frame for homes, street names and personal pins.
 
 ## Resources and parallel work
 

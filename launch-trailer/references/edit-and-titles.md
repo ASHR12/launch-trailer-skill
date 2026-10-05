@@ -22,12 +22,12 @@ Tell the user the cost of a change in these terms before making it.
 
 ## The titles layer
 
-One page (or canvas program) draws every graphic: the title, chapter titles, callouts, flashes, the end card and any graphic slot. It exposes three things:
+One page (or canvas program) draws every graphic: the title, chapter titles, callouts, captions, flashes, the end card and any graphic slot. It exposes three things:
 
 ```js
 window.__titles = {
   setup(shape) { /* build the elements for '16x9' or '9x16' */ },
-  frames: 3600,                 // the timeline's total
+  frames: TOTAL_FRAMES,         // from the timeline file
   render(frame) { /* set every element's text, transform and opacity for this frame */ },
 };
 ```
@@ -43,12 +43,12 @@ window.__titles = {
 
 | Element | Motion | Timing |
 | :--- | :--- | :--- |
-| Main title | slams in from large to exact with a small overshoot, a short decaying shake, a flash behind it | on its hit, about 3 s in, held about 1.5 s |
+| Main title | slams in from large to exact with a small overshoot, a short decaying shake, a flash behind it | on its hit, where the storyboard puts the name; held about 1.5 s |
 | Chapter title | the same slam, smaller | on the chapter's first beat, held about 1 to 1.2 s, gone before the next idea |
 | Callout ("25 lands") | pops in with the number first | on a hit inside the chapter, about 1 s |
 | Flash | full-frame white, fading over 6 to 12 frames | on big hits and hard transitions only |
 | Logo reveal | builds or assembles, then holds | the finale, on its hit |
-| End card | fades in over an opaque backdrop | the last 2.5 s or more |
+| End card | fades in over an opaque backdrop | the brief's end-card time, at the end |
 
 A slam can be written as `scale = from + (1 - from) * outBack(t)` over about 9 frames, where `outBack` overshoots slightly before settling; the shake is a sine and cosine offset whose amplitude decays to zero over about 12 frames.
 
@@ -61,7 +61,7 @@ A slam can be written as `scale = from + (1 - from) * outBack(t)` over about 9 f
 - **Safe areas**: keep text and logos inside the central area of the frame. On vertical video, feed apps draw their own captions and buttons over the bottom fifth, the top and the right edge; keep important text out of those zones.
 - **Reading time**: hold a title long enough to read twice: about a second for up to four words, longer for more, longest for the product name and the call to action.
 - **Spelling**: check the product name's exact capitalization and every word at full size before the full render.
-- **Nothing that ages**: no version numbers, dates or "new in" labels on a launch trailer; they date the video. The Lightning Sortie user asked for a version label to come off the end card.
+- **Text that ages**: version numbers, dates and "new in" labels date a trailer quickly. Use them only when the brief asks, and check them again just before delivery.
 
 ## Transitions
 
@@ -80,9 +80,8 @@ A slam can be written as `scale = from + (1 - from) * outBack(t)` over about 9 f
 ## The end card
 
 - **An opaque backdrop**. In the BlockHaven cut the logo built from blocks in the world showed faintly through a partly transparent dim layer behind the card's own logo; it read as a mistake and was made opaque.
-- **One block, centred**: the logo, an optional subtitle and the call to action, laid out and centred as a single group, not as separate pieces.
-- **One call to action**: "Play now", "Try it free", the address or store badges if the brand rules allow them. Drop extra claims: the BlockHaven user removed a "Built in about 25 hours" line, leaving the logo and "PLAY NOW".
-- **Long enough**: at least 2.5 seconds after it is fully in, under the music's last hit and its tail.
+- **The brief's content, as one block**: usually the logo and a call to action, plus whatever else the brief lists (where to get it, platforms, store badges if the brand rules allow them, a date, credits), laid out and centred as a single group, not as separate pieces. When the brief is silent, propose content that suits the use case ([brief-and-story.md](brief-and-story.md)) and confirm it before building the titles. Every claim on the card is true and still current.
+- **Long enough**: the brief's end-card time, and at least long enough to read twice once it is fully in (about 2.5 seconds for a logo and one short line, more for more text), under the music's last hit and its tail.
 
 ## Graphic slots
 
